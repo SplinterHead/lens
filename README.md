@@ -1,8 +1,5 @@
 # Lens
 
-> [!WARNING]
-> This app is in it's very early stages. Data is hardcoded for development
-
 Lens is a self-hosted application for storing and tracking opticians prescriptions and eyewear over time
 
 ![Lens dashboard](./docs/img/lens_dashboard.png)
@@ -15,7 +12,7 @@ Lens is a self-hosted application for storing and tracking opticians prescriptio
 
 ## Roadmap
 
-- [ ] Integrate database for persisting data
+- [x] Integrate database for persisting data
 - [ ] Unit test everything
 - [ ] Containerise the app
 - [ ] Page describing the parts of a prescription
