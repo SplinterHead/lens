@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import GlassesTracker from './components/GlassesTracker.vue';
-import NavigationBar from './components/NavigationBar.vue'
-import PrescriptionForm from './components/PrescriptionForm.vue'
-import PrescriptionHistory from './components/PrescriptionHistory.vue'
+import GlassesTracker from "./components/GlassesTracker.vue"
+import NavigationBar from "./components/NavigationBar.vue"
+import PrescriptionForm from "./components/PrescriptionForm.vue"
+import PrescriptionHistory from "./components/PrescriptionHistory.vue"
 
 export default {
   name: 'App',
@@ -28,7 +28,7 @@ export default {
     NavigationBar,
     PrescriptionForm,
     PrescriptionHistory
-  }
+  },
 }
 </script>
 
