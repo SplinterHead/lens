@@ -46,8 +46,8 @@ module.exports = {
   // Prescriptions
   createPrescription: function (prescription) {
     var query = `
-      INSERT INTO prescriptions (l_sph, l_cyl, l_axis, r_sph, r_cyl, r_axis)
-      VALUES ('${prescription.l_sph}', '${prescription.l_cyl}', '${prescription.l_axis}', '${prescription.r_sph}', '${prescription.r_cyl}', '${prescription.r_axis}');
+      INSERT INTO prescriptions (l_sph, l_cyl, l_axis, r_sph, r_cyl, r_axis, created_at)
+      VALUES ('${prescription.l_sph}', '${prescription.l_cyl}', '${prescription.l_axis}', '${prescription.r_sph}', '${prescription.r_cyl}', '${prescription.r_axis}', '${prescription.date}');
     `
     writeDb(query);
   },

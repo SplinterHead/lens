@@ -19,8 +19,8 @@
           Axis
         </b-coL>
       </b-row>
-      <b-row id="prescription-right-right">
-        <b-col>R:</b-col>
+      <b-row id="prescription-right-eye">
+        <b-col class="presription-eye-label">R:</b-col>
         <b-col class="prescription-input">
           <b-form-input id="right-sph-input" v-model="right.sph"/>
         </b-col>
@@ -32,7 +32,7 @@
         </b-col>
       </b-row>
       <b-row id="prescription-left-eye">
-        <b-col>L:</b-col>
+        <b-col class="presription-eye-label">L:</b-col>
         <b-col class="prescription-input">
           <b-form-input id="left-sph-input" v-model="left.sph"/>
         </b-col>
@@ -43,6 +43,15 @@
           <b-form-input id="left-axis-input" v-model="left.axis"/>
         </b-col>
       </b-row>
+      <div id="prescription-date-picker">
+        {{ new Date(prescriptionDate).toLocaleDateString() }}
+        <b-form-datepicker
+          v-model="prescriptionDate"
+          button-only
+          right
+          @context="onContext"
+        />
+      </div>
     </b-container>
     <cyl-tooltip target="cyl-tooltip" />
     <sph-tooltip target="sph-tooltip" />
@@ -65,7 +74,8 @@ export default {
   data() {
     return {
       left: {axis: 0, cyl: 0, sph: 0},
-      right: {axis: 0, cyl: 0, sph: 0}
+      right: {axis: 0, cyl: 0, sph: 0},
+      prescriptionDate: new Date()
     }
   },
   methods: {
@@ -77,6 +87,7 @@ export default {
         r_sph: this.right.sph,
         r_cyl: this.right.cyl,
         r_axis: this.right.axis,
+        date: this.prescriptionDate
       }
       axios.post("http://localhost:3000/prescription", payload)
       this.$root.$emit("newPrescription")
@@ -85,7 +96,20 @@ export default {
     resetForm: function() {
       this.left = {axis: 0, cyl: 0, sph: 0}
       this.right = {axis: 0, cyl: 0, sph: 0}
+      this.prescriptionDate = new Date()
     }
   }
 }
 </script>
+
+<style scoped>
+.presription-eye-label {
+  columns: 1;
+  text-align: right;
+}
+
+#prescription-date-picker {
+  float: right;
+  margin-top: 5px;
+}
+</style>

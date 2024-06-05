@@ -32,7 +32,8 @@ api.post("/prescription", (req, res) => {
     l_axis: req.body.l_axis,
     r_sph: req.body.r_sph,
     r_cyl: req.body.r_cyl,
-    r_axis: req.body.r_axis
+    r_axis: req.body.r_axis,
+    date: req.body.date
   })
   res.status(201);
   res.send(req.body);
