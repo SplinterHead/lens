@@ -1,16 +1,27 @@
 const sqlite3 = require("sqlite3");
 const db = new sqlite3.Database("lens.db")
 
-const initialisePrescriptions = `CREATE TABLE IF NOT EXISTS prescriptions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT, 
-    l_sph FLOAT, 
-    l_cyl FLOAT, 
-    l_axis FLOAT, 
-    r_sph FLOAT, 
-    r_cyl FLOAT, 
-    r_axis FLOAT, 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  );`
+const initialisePrescriptions = `
+CREATE TABLE IF NOT EXISTS prescriptions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  l_sph FLOAT,
+  l_cyl FLOAT,
+  l_axis FLOAT,
+  r_sph FLOAT,
+  r_cyl FLOAT,
+  r_axis FLOAT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`
+
+const initialiseGlasses = `
+CREATE TABLE IF NOT EXISTS glasses (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  brand STRING,
+  description STRING,
+  retailer STRING,
+  sunglasses INTEGER,
+  img_url STRING
+);`
 
 function writeDb(queryString) {
   db.serialize(function() {
@@ -27,14 +38,16 @@ function readDb(queryString) {
 }
 
 module.exports = {
-  createPrescriptionSchema: function () {
+  setup: function () {
     writeDb(initialisePrescriptions)
+    writeDb(initialiseGlasses)
   },
 
+  // Prescriptions
   createPrescription: function (prescription) {
     var query = `
       INSERT INTO prescriptions (l_sph, l_cyl, l_axis, r_sph, r_cyl, r_axis)
-      VALUES (${prescription.l_sph}, ${prescription.l_cyl}, ${prescription.l_axis}, ${prescription.r_sph}, ${prescription.r_cyl}, ${prescription.r_axis});
+      VALUES ('${prescription.l_sph}', '${prescription.l_cyl}', '${prescription.l_axis}', '${prescription.r_sph}', '${prescription.r_cyl}', '${prescription.r_axis}');
     `
     writeDb(query);
   },
@@ -43,5 +56,20 @@ module.exports = {
     var query = "SELECT * FROM prescriptions ORDER BY created_at DESC;"
     let dbData = await readDb(query);
     return dbData;
-  }
+  },
+
+  // Glasses
+  createGlasses: function(glasses) {
+    var query = `
+      INSERT INTO glasses (brand, retailer, sunglasses, img_url) 
+      VALUES ('${glasses.brand}', '${glasses.retailer}', '${glasses.sunglasses}', '${glasses.img}')
+    `
+    writeDb(query)
+  },
+
+  getGlasses: async function () {
+    var query = "SELECT * FROM glasses ORDER BY id DESC;"
+    let dbData = await readDb(query);
+    return dbData;
+  },
 }

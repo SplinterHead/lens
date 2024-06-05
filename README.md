@@ -4,6 +4,18 @@ Lens is a self-hosted application for storing and tracking opticians prescriptio
 
 ![Lens dashboard](./docs/img/lens_dashboard.png)
 
+## Setup
+
+First start the database
+```bash
+npm run db
+```
+
+Then start the app
+```bash
+npm run serve
+```
+
 ## Features
 
 - Historical tracking of prescriptions

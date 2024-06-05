@@ -4,7 +4,6 @@
     <b-container >
       <b-row>
         <b-col>
-          <PrescriptionForm />
           <PrescriptionHistory />
         </b-col>
         <b-col>
@@ -18,7 +17,6 @@
 <script>
 import GlassesTracker from "./components/GlassesTracker.vue"
 import NavigationBar from "./components/NavigationBar.vue"
-import PrescriptionForm from "./components/PrescriptionForm.vue"
 import PrescriptionHistory from "./components/PrescriptionHistory.vue"
 
 export default {
@@ -26,7 +24,6 @@ export default {
   components: {
     GlassesTracker,
     NavigationBar,
-    PrescriptionForm,
     PrescriptionHistory
   },
 }
