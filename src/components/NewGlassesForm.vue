@@ -77,16 +77,14 @@ export default {
   },
   methods: {
     submitForm: async function() {
-      console.log(this.brand)
-      console.log(this.retailer)
-      console.log(this.img)
       let payload = {
         brand: this.brand,
         retailer: this.retailer,
         img: this.img,
         sunglasses: this.sunglasses,
       }
-      await axios.post("http://localhost:3000/glasses", payload)
+      axios.post("http://localhost:3000/glasses", payload)
+      this.$root.$emit("newGlasses")
     }
   }
 }
