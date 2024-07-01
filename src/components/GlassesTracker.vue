@@ -63,6 +63,9 @@ export default {
   },
   mounted() {
     this.getGlasses()
+    this.$root.$on("newGlasses", () => {
+      this.getGlasses()
+    })
   }
 }
 </script>
