@@ -58,6 +58,19 @@
       >
         Sunglasses
       </b-form-checkbox>
+      <b-form-group
+        id="prescription-group"
+        label="Prescription:"
+        label-for="prescription-input"
+        label-cols-sm="3"
+        label-align-sm="right"
+      >
+        <b-form-select v-model="glassesPrescription" id="prescription" class="mb-1">
+          <b-form-select-option v-for="p in prescriptions" :key="p.id" :value="p.id">
+            {{ new Date(p.created_at).toLocaleDateString() }}
+          </b-form-select-option>
+        </b-form-select>
+      </b-form-group>
     </b-form>
   </b-modal>
 </template>
@@ -72,10 +85,19 @@ export default {
       brand: "",
       retailer: "",
       sunglasses: false,
-      img: ""
+      img: "",
+      glassesPrescription: "",
+      prescriptions: []
     }
   },
+  mounted() {
+    this.getPrescriptions()
+  },
   methods: {
+    getPrescriptions: async function() {
+      await axios.get("http://localhost:3000/prescription")
+                 .then((res) => {this.prescriptions = res.data})
+    },
     submitForm: async function() {
       let payload = {
         brand: this.brand,
