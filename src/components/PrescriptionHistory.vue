@@ -3,7 +3,7 @@
     <b-card-text>
       <div v-if="prescriptions.length > 0">
         <p v-for="p in prescriptions" :key="p.id">
-          <prescription-table :prescription="p" />
+          <prescription-table :prescription="p"/>
         </p>
         <b-button @click="$bvModal.show('new-prescription-modal')">Add</b-button>
       </div>
@@ -43,6 +43,12 @@ export default {
     this.getPrescriptions()
     this.$root.$on("newPrescription", () => {
       this.getPrescriptions()
+    })
+    this.$root.$on("deletePrescription", (prescriptionId) => {
+      axios.delete(`http://localhost:3000/prescription/${prescriptionId}`)
+      .then(() => {
+        this.getPrescriptions()
+      })
     })
   }
 }

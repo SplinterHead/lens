@@ -79,8 +79,10 @@ export default {
         r_axis: this.right.axis,
       }
       axios.post("http://localhost:3000/prescription", payload)
-      this.$root.$emit("newPrescription")
-      this.resetForm()
+      .then(() => {
+        this.$root.$emit("newPrescription")
+        this.resetForm()
+      })
     },
     resetForm: function() {
       this.left = {axis: 0, cyl: 0, sph: 0}

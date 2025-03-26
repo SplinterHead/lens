@@ -38,6 +38,13 @@ api.post("/prescription", (req, res) => {
   res.send(req.body);
 })
 
+api.delete("/prescription/:id", (req, res) => {
+  console.log(`Deleting prescription with ID ${req.params.id}`)
+  db.deletePrescription(req.params.id);
+  res.status(200);
+  res.send(req.body);
+})
+
 api.get("/glasses", async (req, res) => {
   console.log("Getting all pairs of glasses")
   var data = await db.getGlasses();

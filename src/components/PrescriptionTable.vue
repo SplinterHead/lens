@@ -1,13 +1,23 @@
 <template>
   <div>
-    <div class="prescription-date">{{ new Date(prescription.created_at).toLocaleDateString() }}</div>
+    <div class="prescription-date d-flex justify-content-between">
+      <span>{{ new Date(prescription.created_at).toLocaleDateString() }}</span>
+      <b-button variant="outline-danger">
+        <b-icon-trash class="trashLink" @click="deletePrescription"/>
+      </b-button>
+    </div>
     <b-table small :items="tableData" :fields="fields" />
   </div>
 </template>
 
 <script>
+import { BIconTrash } from 'bootstrap-vue'
+
 export default {
   name: "PrescriptionTable",
+  components: {
+    BIconTrash
+  },
   props: {
     prescription: Object
   },
@@ -38,6 +48,10 @@ export default {
         "axis": prescription.l_axis.toFixed(1),
       }
       return [r_eye, l_eye]
+    },
+    deletePrescription() {
+      this.$root.$emit("deletePrescription", this.prescription.id)
+
     }
   }
 }
@@ -46,5 +60,9 @@ export default {
 <style scoped>
 .prescription-date {
   text-align: left
+}
+
+.trashLink {
+  cursor: pointer;
 }
 </style>
