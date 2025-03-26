@@ -58,6 +58,11 @@ module.exports = {
     return dbData;
   },
 
+  deletePrescription: function (prescriptionId) {
+    var query = `DELETE FROM prescriptions WHERE id=${prescriptionId}`
+    writeDb(query);
+  },
+
   // Glasses
   createGlasses: function(glasses) {
     var query = `
