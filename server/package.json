@@ -1,0 +1,16 @@
+{
+  "name": "lens-db",
+  "version": "0.1.0",
+  "description": "Database backend for the Lens app",
+  "main": "src/index.js",
+  "author": "Lewis England <lewis2004@hotmail.com>",
+  "scripts": {
+    "db": "node src/index.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  }
+}

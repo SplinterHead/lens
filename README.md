@@ -6,14 +6,24 @@ Lens is a self-hosted application for storing and tracking opticians prescriptio
 
 ## Setup
 
+### Running Locally with NPM
+
 First start the database
 ```bash
+cd server/
 npm run db
 ```
 
 Then start the app
 ```bash
+cd client/
 npm run serve
+```
+
+### Running with Docker Compose
+
+```
+docker-compose up
 ```
 
 ## Features
@@ -26,7 +36,7 @@ npm run serve
 
 - [x] Integrate database for persisting data
 - [ ] Unit test everything
-- [ ] Containerise the app
+- [x] Containerise the app
 - [ ] Page describing the parts of a prescription
 - [ ] Generate a brief description of the latest prescription
 - [ ] Reminder to book next test (based on optician recommendations)

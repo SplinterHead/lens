@@ -1,0 +1,14 @@
+services:
+  db:
+    image: splinterhead27/lens-db
+    container_name: lens-db
+    ports:
+      - 3000:3000
+  
+  lens:
+    image: splinterhead27/lens
+    container_name: lens
+    ports:
+      - 9090:3000
+    depends_on:
+      - db

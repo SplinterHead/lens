@@ -1,22 +1,18 @@
 {
   "name": "lens",
   "version": "0.1.0",
-  "private": true,
+  "description": "Database backend for the Lens app",
+  "main": "src/index.js",
+  "author": "Lewis England <lewis2004@hotmail.com>",
   "scripts": {
-    "db": "node api/index.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^1.7.2",
-    "better-sqlite3": "^10.0.0",
-    "body-parser": "^1.20.2",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
-    "cors": "^2.8.5",
-    "express": "^4.19.2",
-    "sqlite3": "^5.1.7",
     "vue": "^2.6.14"
   },
   "devDependencies": {
