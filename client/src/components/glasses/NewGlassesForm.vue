@@ -84,7 +84,7 @@ export default {
         sunglasses: this.sunglasses,
       }
       axios.post("http://localhost:3000/glasses", payload)
-      this.$root.$emit("newGlasses")
+      this.$root.$emit("updateGlasses")
     }
   }
 }
