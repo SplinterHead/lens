@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <NavigationBar />
-    <b-container >
+    <b-container>
+      <b-row>
+        <b-col>
+          <Summary />
+        </b-col>
+      </b-row>
       <b-row>
         <b-col>
           <PrescriptionHistory :prescriptions="this.prescriptions"/>
@@ -19,6 +24,7 @@ import axios from "axios"
 import GlassesTracker from "@/components/glasses/GlassesTracker.vue"
 import NavigationBar from "@/components/NavigationBar.vue"
 import PrescriptionHistory from "@/components/prescriptions/PrescriptionHistory.vue"
+import Summary from "./components/Summary.vue"
 
 const apiUrl = window.VUE_APP_API_URL
 
@@ -27,7 +33,8 @@ export default {
   components: {
     GlassesTracker,
     NavigationBar,
-    PrescriptionHistory
+    PrescriptionHistory,
+    Summary
   },
   data() {
     return {
