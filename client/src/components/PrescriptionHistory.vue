@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     async getPrescriptions() {
-      await axios.get("http://localhost:3000/prescription")
+      await axios.get("http://localhost:3000/prescriptions")
                  .then((res) => {this.prescriptions = res.data})
     }
   },
@@ -45,7 +45,7 @@ export default {
       this.getPrescriptions()
     })
     this.$root.$on("deletePrescription", (prescriptionId) => {
-      axios.delete(`http://localhost:3000/prescription/${prescriptionId}`)
+      axios.delete(`http://localhost:3000/prescriptions/${prescriptionId}`)
       .then(() => {
         this.getPrescriptions()
       })

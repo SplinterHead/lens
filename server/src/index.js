@@ -17,14 +17,14 @@ api.listen(3000, () => {
   console.log("Server started ...");
 });
 
-api.get("/prescription", async (req, res) => {
+api.get("/prescriptions", async (req, res) => {
   console.log("Getting all prescriptions")
   var data = await db.getPrescriptions();
   res.status(200);
   res.send(data);
 })
 
-api.post("/prescription", (req, res) => {
+api.post("/prescriptions", (req, res) => {
   console.log("Storing new prescription")
   db.createPrescription({
     l_sph: req.body.l_sph,
@@ -38,7 +38,7 @@ api.post("/prescription", (req, res) => {
   res.send(req.body);
 })
 
-api.delete("/prescription/:id", (req, res) => {
+api.delete("/prescriptions/:id", (req, res) => {
   console.log(`Deleting prescription with ID ${req.params.id}`)
   db.deletePrescription(req.params.id);
   res.status(200);
