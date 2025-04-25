@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <NavigationBar />
-    <b-container >
+    <b-container>
+      <b-row>
+        <b-col>
+          <Summary />
+        </b-col>
+      </b-row>
       <b-row>
         <b-col>
           <PrescriptionHistory />
@@ -18,13 +23,15 @@
 import GlassesTracker from "./components/GlassesTracker.vue"
 import NavigationBar from "./components/NavigationBar.vue"
 import PrescriptionHistory from "./components/PrescriptionHistory.vue"
+import Summary from "./components/Summary.vue"
 
 export default {
   name: 'App',
   components: {
     GlassesTracker,
     NavigationBar,
-    PrescriptionHistory
+    PrescriptionHistory,
+    Summary
   },
 }
 </script>
