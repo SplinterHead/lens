@@ -23,7 +23,7 @@ jobs:
         context: client
         file: ./client/Dockerfile
         push: true
-        tags: latest
+        tags: ${{ vars.DOCKERHUB_USERNAME }}/lens:latest
 
     - name: Build and push server image
       id: push-server
@@ -32,4 +32,4 @@ jobs:
         context: server
         file: ./server/Dockerfile
         push: true
-        tags: latest
+        tags: ${{ vars.DOCKERHUB_USERNAME }}/lens-db:latest
