@@ -13,23 +13,10 @@
 </template>
 
 <script>
-import axios from "axios"
-
 export default {
   name: "PrescriptionModal",
-  data () {
-    return {
-      currentPrescription: Object
-    }
-  },
-  methods: {
-    async getCurrentPrescription() {
-      await axios.get("http://localhost:3000/prescriptions")
-                 .then((res) => {this.currentPrescription = res.data[0]})
-    }
-  },
-  mounted() {
-    this.getCurrentPrescription()
+  props: {
+    currentPrescription: Object
   }
 }
 </script>
