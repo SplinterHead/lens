@@ -55,8 +55,8 @@
 <script>
 import axios from "axios";
 import { BIconQuestionCircle } from "bootstrap-vue"
-import CylTooltip from "./tooltips/CylinderTooltip.vue"
-import SphTooltip from "./tooltips/SphereTooltip.vue"
+import CylTooltip from "@/components/tooltips/CylinderTooltip.vue"
+import SphTooltip from "@/components/tooltips/SphereTooltip.vue"
 
 export default {
   name: "PrescriptionModal",
@@ -78,7 +78,7 @@ export default {
     }
   },
   methods: {
-    addPrescription: function() {
+    addPrescription: async function() {
       let payload = {
         l_sph: this.left.sph,
         l_cyl: this.left.cyl,
@@ -87,10 +87,10 @@ export default {
         r_cyl: this.right.cyl,
         r_axis: this.right.axis,
       }
-      axios.post("http://localhost:3000/prescriptions", payload)
+      await axios.post("http://localhost:3000/prescriptions", payload)
       .then(() => {
-        this.$root.$emit("newPrescription")
         this.resetForm()
+        this.$root.$emit("updatePrescriptions")
       })
     },
     format_number(e) {

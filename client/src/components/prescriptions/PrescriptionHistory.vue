@@ -19,8 +19,8 @@
 
 <script>
 import axios from "axios"
-import PrescriptionModal from "@/components/PrescriptionModal.vue"
-import PrescriptionTable from "@/components/PrescriptionTable.vue"
+import PrescriptionModal from "@/components/prescriptions/PrescriptionModal.vue"
+import PrescriptionTable from "@/components/prescriptions/PrescriptionTable.vue"
 
 export default {
   name: "PrescriptionHistory",
@@ -28,27 +28,18 @@ export default {
     PrescriptionModal,
     PrescriptionTable
   },
-  data () {
-    return {
-      prescriptions: []
-    }
+  props: {
+    prescriptions: []
   },
   methods: {
-    async getPrescriptions() {
-      await axios.get("http://localhost:3000/prescriptions")
-                 .then((res) => {this.prescriptions = res.data})
+    deletePrescription: async function(prescriptionId) {
+      await axios.delete(`http://localhost:3000/prescriptions/${prescriptionId}`)
+        .then(() => {this.$root.$emit("updatePrescriptions")})
     }
   },
   mounted() {
-    this.getPrescriptions()
-    this.$root.$on("newPrescription", () => {
-      this.getPrescriptions()
-    })
     this.$root.$on("deletePrescription", (prescriptionId) => {
-      axios.delete(`http://localhost:3000/prescriptions/${prescriptionId}`)
-      .then(() => {
-        this.getPrescriptions()
-      })
+      this.deletePrescription(prescriptionId)
     })
   }
 }

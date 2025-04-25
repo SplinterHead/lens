@@ -33,9 +33,8 @@
 </template>
 
 <script>
-import axios from "axios"
 import { BIconEyeglasses, BIconSunglasses } from 'bootstrap-vue'
-import NewGlassesForm from './NewGlassesForm.vue'
+import NewGlassesForm from '@/components/glasses/NewGlassesForm.vue'
 
 export default {
   name: 'GlassesTracker',
@@ -45,27 +44,12 @@ export default {
     NewGlassesForm
   },
   props: {
-    currentPrescription: Object
-  },
-  data() {
-    return {
-      glasses: []
-    }
+    glasses: []
   },
   methods: {
-    async getGlasses() {
-      await axios.get("http://localhost:3000/glasses")
-                 .then((res) => {this.glasses = res.data})
-    },
     modalTitle(pair) {
       return ['Your', pair.brand, pair.sunglasses ? 'sunglasses' : 'glasses'].join(' ')
     }
-  },
-  mounted() {
-    this.getGlasses()
-    this.$root.$on("newGlasses", () => {
-      this.getGlasses()
-    })
   }
 }
 </script>
