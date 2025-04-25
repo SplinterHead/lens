@@ -78,7 +78,7 @@ export default {
     }
   },
   methods: {
-    addPrescription: function() {
+    addPrescription: async function() {
       let payload = {
         l_sph: this.left.sph,
         l_cyl: this.left.cyl,
@@ -87,11 +87,11 @@ export default {
         r_cyl: this.right.cyl,
         r_axis: this.right.axis,
       }
-      axios.post("http://localhost:3000/prescriptions", payload)
+      await axios.post("http://localhost:3000/prescriptions", payload)
       .then(() => {
         this.resetForm()
+        this.$root.$emit("updatePrescriptions")
       })
-      this.$root.$emit("updatePrescriptions")
     },
     format_number(e) {
       if ((e > this.validation.max || e < this.validation.min) || Math.round(e * this.validation.decimal) / this.validation.decimal != e) {

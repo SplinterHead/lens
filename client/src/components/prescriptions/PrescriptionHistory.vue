@@ -31,9 +31,15 @@ export default {
   props: {
     prescriptions: []
   },
+  methods: {
+    deletePrescription: async function(prescriptionId) {
+      await axios.delete(`http://localhost:3000/prescriptions/${prescriptionId}`)
+        .then(() => {this.$root.$emit("updatePrescriptions")})
+    }
+  },
   mounted() {
     this.$root.$on("deletePrescription", (prescriptionId) => {
-      axios.delete(`http://localhost:3000/prescriptions/${prescriptionId}`)
+      this.deletePrescription(prescriptionId)
     })
   }
 }

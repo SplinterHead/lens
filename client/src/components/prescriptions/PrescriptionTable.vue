@@ -51,7 +51,7 @@ export default {
     },
     deletePrescription() {
       this.$root.$emit("deletePrescription", this.prescription.id)
-      this.$root.$emit("updatePrescriptions")
+
     }
   }
 }
