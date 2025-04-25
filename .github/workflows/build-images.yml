@@ -22,7 +22,7 @@ jobs:
       with:
         context: client
         file: ./client/Dockerfile
-        push: true
+        push: ${{ github.ref == 'refs/heads/main' }} # Only push when using main branch
         tags: ${{ vars.DOCKERHUB_USERNAME }}/lens:latest
 
     - name: Build and push server image
@@ -31,5 +31,5 @@ jobs:
       with:
         context: server
         file: ./server/Dockerfile
-        push: true
+        push: ${{ github.ref == 'refs/heads/main' }} # Only push when using main branch
         tags: ${{ vars.DOCKERHUB_USERNAME }}/lens-db:latest
