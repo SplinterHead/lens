@@ -4,15 +4,15 @@
     <b-container>
       <b-row>
         <b-col>
-          <Summary />
+          <Summary v-if="this.prescriptions.length > 0" :currentPrescription="this.prescriptions[0]" />
         </b-col>
       </b-row>
       <b-row>
         <b-col>
-          <PrescriptionHistory :prescriptions="this.prescriptions"/>
+          <PrescriptionHistory :prescriptions="this.prescriptions" />
         </b-col>
         <b-col>
-          <GlassesTracker :glasses="this.glasses"/>
+          <GlassesTracker :glasses="this.glasses" />
         </b-col>
       </b-row>
     </b-container>
