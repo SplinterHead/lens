@@ -55,8 +55,8 @@
 <script>
 import axios from "axios";
 import { BIconQuestionCircle } from "bootstrap-vue"
-import CylTooltip from "./tooltips/CylinderTooltip.vue"
-import SphTooltip from "./tooltips/SphereTooltip.vue"
+import CylTooltip from "@/components/tooltips/CylinderTooltip.vue"
+import SphTooltip from "@/components/tooltips/SphereTooltip.vue"
 
 export default {
   name: "PrescriptionModal",
@@ -89,9 +89,9 @@ export default {
       }
       axios.post("http://localhost:3000/prescriptions", payload)
       .then(() => {
-        this.$root.$emit("newPrescription")
         this.resetForm()
       })
+      this.$root.$emit("updatePrescriptions")
     },
     format_number(e) {
       if ((e > this.validation.max || e < this.validation.min) || Math.round(e * this.validation.decimal) / this.validation.decimal != e) {
