@@ -28,7 +28,7 @@
         </div>
       </b-card-text>
     </b-card>
-    <new-glasses-form />
+    <new-glasses-form :prescriptions="prescriptions"/>
   </div>
 </template>
 
@@ -44,7 +44,8 @@ export default {
     NewGlassesForm
   },
   props: {
-    glasses: []
+    glasses: [],
+    prescriptions: []
   },
   methods: {
     modalTitle(pair) {

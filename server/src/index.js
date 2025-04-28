@@ -55,6 +55,7 @@ api.get("/glasses", async (req, res) => {
 api.post("/glasses", (req, res) => {
   console.log("Storing new pair of glasses")
   db.createGlasses({
+    prescriptionId: req.body.prescriptionId,
     brand: req.body.brand,
     retailer: req.body.retailer,
     img: req.body.img,

@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS prescriptions (
 const initialiseGlasses = `
 CREATE TABLE IF NOT EXISTS glasses (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
+  prescription_id INTEGER,
   brand STRING,
   description STRING,
   retailer STRING,
@@ -66,8 +67,8 @@ module.exports = {
   // Glasses
   createGlasses: function(glasses) {
     var query = `
-      INSERT INTO glasses (brand, retailer, sunglasses, img_url) 
-      VALUES ('${glasses.brand}', '${glasses.retailer}', '${glasses.sunglasses}', '${glasses.img}')
+      INSERT INTO glasses (prescription_id, brand, retailer, sunglasses, img_url) 
+      VALUES ('${glasses.prescriptionId}', '${glasses.brand}', '${glasses.retailer}', '${glasses.sunglasses}', '${glasses.img}')
     `
     writeDb(query)
   },

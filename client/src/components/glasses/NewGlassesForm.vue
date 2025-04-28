@@ -49,6 +49,25 @@
           required
         />
       </b-form-group>
+      <b-form-group
+        id="prescription-id"
+        label="Prescription:"
+        label-for="prescription-id"
+        label-cols-sm="3"
+        label-align-sm="right"
+      >
+        <b-form-select
+          id="prescription-id"
+          v-model="prescriptionId"
+        >
+          <b-form-select-option
+            v-for="prescription in prescriptions"
+            :key="prescription.id"
+            :value="prescription.id" >
+              {{ new Date(prescription.created_at).toLocaleDateString() }}
+            </b-form-select-option>
+        </b-form-select>
+      </b-form-group>
       <b-form-checkbox
         id="sunglasses"
         v-model="sunglasses"
@@ -67,20 +86,25 @@ import axios from "axios"
 
 export default {
   name: "NewGlassesForm",
+  props: {
+    prescriptions: []
+  },
   data() {
     return {
       brand: "",
+      img: "",
+      prescriptionId: 0,
       retailer: "",
       sunglasses: false,
-      img: ""
     }
   },
   methods: {
     submitForm: async function() {
       let payload = {
         brand: this.brand,
-        retailer: this.retailer,
         img: this.img,
+        prescriptionId: this.prescriptionId,
+        retailer: this.retailer,
         sunglasses: this.sunglasses,
       }
       axios.post("http://localhost:3000/glasses", payload)
