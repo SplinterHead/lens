@@ -18,6 +18,13 @@
                 </b-card-text>
               </b-col>
             </b-row>
+            <b-row>
+              <b-col md="3" />
+              <b-col md="9" class="d-flex justify-content-center mt-3">
+                <b-icon class="mt-auto mb-auto" :icon="displayIcon(pair)" :variant="displayVariant(pair)" />
+                <span class="pl-2">{{ displayMessage(pair) }}</span>
+              </b-col>
+            </b-row>
           </b-card>
           <b-button @click="$bvModal.show('new-glasses-modal')">Add</b-button>
         </div>
@@ -33,21 +40,50 @@
 </template>
 
 <script>
-import { BIconEyeglasses, BIconSunglasses } from 'bootstrap-vue'
+import { BIcon, BIconEyeglasses, BIconSunglasses } from 'bootstrap-vue'
 import NewGlassesForm from '@/components/glasses/NewGlassesForm.vue'
 
 export default {
   name: 'GlassesTracker',
   components: {
+    BIcon,
     BIconEyeglasses,
     BIconSunglasses,
     NewGlassesForm
   },
   props: {
     glasses: [],
+    latestPrescription: Object,
     prescriptions: []
   },
   methods: {
+    displayIcon(pair) {
+      if (pair.prescription_id == this.latestPrescription.id) {
+        return "check-square"
+      } else if (pair.prescription_id == this.latestPrescription.id - 1 || pair.prescription_id == this.latestPrescription.id + 1) {
+        return "exclamation-square"
+      } else {
+        return "x-square"
+      }
+    },
+    displayMessage(pair) {
+      if (pair.prescription_id == this.latestPrescription.id) {
+        return "Has your current prescription"
+      } else if (pair.prescription_id == this.latestPrescription.id - 1) {
+        return "Has your previous prescription"
+      } else {
+        return "Has an old prescription"
+      }
+    },
+    displayVariant(pair) {
+      if (pair.prescription_id == this.latestPrescription.id) {
+        return "success"
+      } else if (pair.prescription_id == this.latestPrescription.id - 1 || pair.prescription_id == this.latestPrescription.id + 1) {
+        return "warning"
+      } else {
+        return "danger"
+      }
+    },
     modalTitle(pair) {
       return ['Your', pair.brand, pair.sunglasses ? 'sunglasses' : 'glasses'].join(' ')
     }

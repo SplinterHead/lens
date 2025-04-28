@@ -7,7 +7,7 @@
           <PrescriptionHistory :prescriptions="this.prescriptions"/>
         </b-col>
         <b-col>
-          <GlassesTracker :glasses="this.glasses" :prescriptions="this.prescriptions"/>
+          <GlassesTracker :glasses="this.glasses" :prescriptions="this.prescriptions" :latestPrescription="this.prescriptions[0]"/>
         </b-col>
       </b-row>
     </b-container>
