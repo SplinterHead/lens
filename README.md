@@ -40,5 +40,5 @@ docker-compose up
 - [ ] Page describing the parts of a prescription
 - [ ] Generate a brief description of the latest prescription
 - [ ] Reminder to book next test (based on optician recommendations)
-- [ ] Warning when a pair of glasses is not on the newest prescription
+- [x] Warning when a pair of glasses is not on the newest prescription
 - [ ] Scan a website to import information about a pair of glasses (scrapers)
