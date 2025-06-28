@@ -20,6 +20,8 @@ import GlassesTracker from "@/components/glasses/GlassesTracker.vue"
 import NavigationBar from "@/components/NavigationBar.vue"
 import PrescriptionHistory from "@/components/prescriptions/PrescriptionHistory.vue"
 
+const apiUrl = window.VUE_APP_API_URL
+
 export default {
   name: 'App',
   components: {
@@ -35,11 +37,12 @@ export default {
   },
   methods: {
     async getGlasses() {
-      await axios.get("http://localhost:3000/glasses")
+      console.log(`Calling ${apiUrl}/glasses`)
+      await axios.get(`${apiUrl}/glasses`)
                  .then((res) => {this.glasses = res.data})
     },
     async getPrescriptions() {
-      await axios.get("http://localhost:3000/prescriptions")
+      await axios.get(`${apiUrl}/prescriptions`)
                  .then((res) => {this.prescriptions = res.data})
     }
   },

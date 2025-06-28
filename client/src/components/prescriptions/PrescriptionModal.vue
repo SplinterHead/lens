@@ -53,10 +53,12 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "axios"
 import { BIconQuestionCircle } from "bootstrap-vue"
 import CylTooltip from "@/components/tooltips/CylinderTooltip.vue"
 import SphTooltip from "@/components/tooltips/SphereTooltip.vue"
+
+const apiUrl = window.VUE_APP_API_URL
 
 export default {
   name: "PrescriptionModal",
@@ -87,7 +89,7 @@ export default {
         r_cyl: this.right.cyl,
         r_axis: this.right.axis,
       }
-      await axios.post("http://localhost:3000/prescriptions", payload)
+      await axios.post(`${apiUrl}/prescriptions`, payload)
       .then(() => {
         this.resetForm()
         this.$root.$emit("updatePrescriptions")

@@ -65,6 +65,8 @@
 <script>
 import axios from "axios"
 
+const apiUrl = window.VUE_APP_API_URL
+
 export default {
   name: "NewGlassesForm",
   data() {
@@ -83,7 +85,7 @@ export default {
         img: this.img,
         sunglasses: this.sunglasses,
       }
-      axios.post("http://localhost:3000/glasses", payload)
+      axios.post(`${apiUrl}/glasses`, payload)
       this.$root.$emit("updateGlasses")
     }
   }

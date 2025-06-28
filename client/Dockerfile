@@ -9,6 +9,7 @@ COPY package* ./
 RUN npm install
 
 COPY src ./src
+COPY public ./public
 COPY babel.config.js ./
 COPY jsconfig.json ./
 COPY vue.config.js ./
@@ -23,4 +24,7 @@ RUN mkdir -p /app && \
 
 COPY --from=builder /app/dist /app
 
-CMD ["serve", "-s", "/app"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]

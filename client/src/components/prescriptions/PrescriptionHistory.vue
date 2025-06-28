@@ -22,6 +22,8 @@ import axios from "axios"
 import PrescriptionModal from "@/components/prescriptions/PrescriptionModal.vue"
 import PrescriptionTable from "@/components/prescriptions/PrescriptionTable.vue"
 
+const apiUrl = window.VUE_APP_API_URL
+
 export default {
   name: "PrescriptionHistory",
   components: {
@@ -33,7 +35,7 @@ export default {
   },
   methods: {
     deletePrescription: async function(prescriptionId) {
-      await axios.delete(`http://localhost:3000/prescriptions/${prescriptionId}`)
+      await axios.delete(`${apiUrl}/prescriptions/${prescriptionId}`)
         .then(() => {this.$root.$emit("updatePrescriptions")})
     }
   },
