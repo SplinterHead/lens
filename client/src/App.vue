@@ -37,7 +37,6 @@ export default {
   },
   methods: {
     async getGlasses() {
-      console.log(`Calling ${apiUrl}/glasses`)
       await axios.get(`${apiUrl}/glasses`)
                  .then((res) => {this.glasses = res.data})
     },

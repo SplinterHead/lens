@@ -96,7 +96,9 @@ export default {
       })
     },
     format_number(e) {
-      if ((e > this.validation.max || e < this.validation.min) || Math.round(e * this.validation.decimal) / this.validation.decimal != e) {
+      if (e == "-") return e;
+      let inputNum = Number(e);
+      if (isNaN(inputNum)) {
         this.showValidationError = true
         return this.last_value
       } else {
