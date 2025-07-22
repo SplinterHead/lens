@@ -77,4 +77,9 @@ module.exports = {
     let dbData = await readDb(query);
     return dbData;
   },
+
+  deleteGlasses: function (glassesId) {
+    var query = `DELETE FROM glasses WHERE id=${glassesId}`
+    writeDb(query);
+  },
 }
