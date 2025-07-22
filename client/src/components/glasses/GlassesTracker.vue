@@ -10,12 +10,17 @@
                 <b-icon-sunglasses v-else-if="pair.img_url == '' && pair.sunglasses == 'true'" font-scale="3"/>
                 <b-icon-eyeglasses v-else font-scale="3"/>
               </b-col>
-              <b-col md="9">
+              <b-col md="6">
                 <b-card-text>
                   Made by {{ pair.brand }}
                   <br />
                   Puchased from {{ pair.retailer }}
                 </b-card-text>
+              </b-col>
+              <b-col md="3">
+                <b-button variant="outline-danger">
+                  <b-icon-trash class="trashLink" @click="deleteGlasses(pair.id)"/>
+                </b-button>
               </b-col>
             </b-row>
           </b-card>
@@ -33,8 +38,11 @@
 </template>
 
 <script>
+import axios from "axios"
 import { BIconEyeglasses, BIconSunglasses } from 'bootstrap-vue'
 import NewGlassesForm from '@/components/glasses/NewGlassesForm.vue'
+
+const apiUrl = window.VUE_APP_API_URL
 
 export default {
   name: 'GlassesTracker',
@@ -47,6 +55,10 @@ export default {
     glasses: []
   },
   methods: {
+    deleteGlasses(glassesId) {
+      axios.delete(`${apiUrl}/glasses/${glassesId}`)
+      this.$root.$emit("updateGlasses")
+    },
     modalTitle(pair) {
       return ['Your', pair.brand, pair.sunglasses ? 'sunglasses' : 'glasses'].join(' ')
     }

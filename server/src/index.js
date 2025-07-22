@@ -63,3 +63,10 @@ api.post("/glasses", (req, res) => {
   res.status(201);
   res.send(req.body);
 })
+
+api.delete("/glasses/:id", (req, res) => {
+  console.log(`Deleting pair of glasses with ID ${req.params.id}`)
+  db.deleteGlasses(req.params.id);
+  res.status(200);
+  res.send(req.body);
+})
